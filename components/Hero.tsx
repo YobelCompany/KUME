@@ -1,4 +1,4 @@
-import { LogoMark } from "./Logo";
+import Logo from "./Logo";
 
 export default function Hero() {
   return (
@@ -12,7 +12,8 @@ export default function Hero() {
 
       <div className="container-page py-24 sm:py-32">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <LogoMark size={56} className="mb-6 opacity-90" />
+          {/* 큰 스택형 로고 */}
+          <Logo size={64} orientation="stack" className="mb-10" />
 
           <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white/70 px-4 py-1.5 text-xs font-semibold text-brand-700 shadow-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
@@ -52,7 +53,6 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* KUME 이름 뿌리 살짝 언급 — 자세한 이야기는 #story 로 유도 */}
           <p className="mx-auto mt-14 max-w-md text-sm italic text-stone-500">
             &ldquo;<span className="font-serif text-base not-italic text-brand-700">탈리다 쿰</span>&rdquo;
             &nbsp;· &nbsp;여자여, 일어나라

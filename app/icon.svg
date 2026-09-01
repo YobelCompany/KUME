@@ -1,12 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="50" fill="#bd5732"/>
-  <g fill="#fdf6f2">
-    <rect x="30" y="26" width="8" height="48"/>
-    <rect x="24" y="26" width="20" height="3"/>
-    <rect x="24" y="71" width="20" height="3"/>
-    <path d="M38 51 L60 26 L68 26 L46 51 Z"/>
-    <path d="M46 51 L68 74 L60 74 L38 51 Z"/>
-    <rect x="58" y="26" width="12" height="3"/>
-    <rect x="58" y="71" width="12" height="3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 70">
+  <!-- 파비콘용 정사각 프레임 (전체 원판 없이 여백만 조정) -->
+  <g transform="translate(0, 15)">
+    <!-- 광선 5개 -->
+    <g stroke="#bd5732" stroke-width="2.6" stroke-linecap="round">
+      <line x1="35" y1="3" x2="35" y2="11"/>
+      <line x1="25" y1="6" x2="28" y2="13"/>
+      <line x1="45" y1="6" x2="42" y2="13"/>
+      <line x1="16" y1="12" x2="21" y2="17"/>
+      <line x1="54" y1="12" x2="49" y2="17"/>
+    </g>
+    <!-- 해 (반원) -->
+    <path d="M21 30 A14 14 0 0 1 49 30 Z" fill="#bd5732"/>
+    <!-- 지평선 -->
+    <line x1="4" y1="30" x2="66" y2="30" stroke="#bd5732" stroke-width="2.2" stroke-linecap="round"/>
   </g>
 </svg>

@@ -1,5 +1,19 @@
 import type { Metadata } from "next";
+import { Nanum_Myeongjo, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+
+// 실제 한글 세리프/산세리프 폰트 로드 (편집 디자인 톤)
+const notoSansKr = Noto_Sans_KR({
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
+  preload: false,
+});
+
+const nanumMyeongjo = Nanum_Myeongjo({
+  weight: ["400", "700", "800"],
+  variable: "--font-serif",
+  preload: false,
+});
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kume.kr";
 
@@ -30,7 +44,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
+    <html
+      lang="ko"
+      className={`${notoSansKr.variable} ${nanumMyeongjo.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

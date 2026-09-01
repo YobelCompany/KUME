@@ -1,84 +1,120 @@
 import type { SVGProps } from "react";
 
 /**
- * KUME 심볼 (v2 · 리파인):
- * - 원형 브랜드 컬러 배경에 모노라인 세리프 K
- * - 상하 대칭이 잡힌 정직한 형태로, 소형 뷰(파비콘 16px)에서도 뭉치지 않도록 얇은 스트로크
- * - 상단 대각선 끝에 미세한 세리프 캡이 있어 편집 디자인 뉘앙스
+ * KUME 심볼 (v3 · 일출 모티프):
+ * - 지평선 위로 떠오르는 해 + 5개의 광선
+ * - '탈리다 쿰(여자여, 일어나라)' = 아침이 밝아오는 이미지를 담음
+ * - 얇은 스트로크와 단색 채움으로 편집 디자인 뉘앙스
+ * - ROI de PASTRY, 오산제일교회 등 한국 편집형 브랜딩 톤 참조
  */
 export function LogoMark({
   size = 32,
   className,
   ...rest
 }: { size?: number } & SVGProps<SVGSVGElement>) {
+  // 마크는 가로:세로 = 70:40 비율
+  const w = size * 1.75;
+  const h = size;
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 100 100"
+      width={w}
+      height={h}
+      viewBox="0 0 70 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden
       {...rest}
     >
-      {/* 브랜드 컬러 원판 (단색 · 그라디언트 X — 인쇄와 소셜 아이콘에 강한 인상) */}
-      <circle cx="50" cy="50" r="50" fill="#bd5732" />
-
-      {/*
-        모노라인 세리프 K
-        - 수직 스템, 두 대각선, 상하 세리프
-        - 광학적 균형을 위해 대각선 교차점을 y=51 (중심에서 살짝 위)로 배치
-      */}
-      <g fill="#fdf6f2">
-        {/* 수직 스템 */}
-        <rect x="30" y="26" width="8" height="48" rx="0.5" />
-        {/* 상단 세리프 */}
-        <rect x="24" y="26" width="20" height="3" />
-        {/* 하단 세리프 */}
-        <rect x="24" y="71" width="20" height="3" />
-        {/* 상단 대각선 */}
-        <path d="M38 51 L60 26 L68 26 L46 51 Z" />
-        {/* 하단 대각선 */}
-        <path d="M46 51 L68 74 L60 74 L38 51 Z" />
-        {/* 상단 대각선 끝 세리프 캡 (미세한 편집 뉘앙스) */}
-        <rect x="58" y="26" width="12" height="3" />
-        {/* 하단 대각선 끝 세리프 캡 */}
-        <rect x="58" y="71" width="12" height="3" />
+      {/* 5개의 광선 */}
+      <g stroke="#bd5732" strokeWidth="1.4" strokeLinecap="round">
+        <line x1="35" y1="3" x2="35" y2="11" />
+        <line x1="25" y1="6" x2="28" y2="13" />
+        <line x1="45" y1="6" x2="42" y2="13" />
+        <line x1="16" y1="12" x2="21" y2="17" />
+        <line x1="54" y1="12" x2="49" y2="17" />
       </g>
+      {/* 지평선 위로 떠오르는 해 (반원) */}
+      <path d="M23 28 A12 12 0 0 1 47 28 Z" fill="#bd5732" />
+      {/* 지평선 */}
+      <line
+        x1="4"
+        y1="28"
+        x2="66"
+        y2="28"
+        stroke="#bd5732"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
 /**
- * 워드마크 + 심볼 조합.
+ * 워드마크 + 심볼 조합 (한/영 병기).
  *
- * 리파인 포인트:
- * - 이탤릭 → 정체(regular)로 변경해 안정감/전문성 강화
- * - 대문자 + 트래킹(0.14em)으로 편집 디자인 하우스 톤
- * - 색상은 stone-900로 통일, 브랜드 컬러는 심볼에만 사용해 대비 강화
+ * - 영문: 정체 대문자 세리프, 트래킹 0.2em으로 편집 디자인 톤
+ * - 한글: 나눔명조 세리프, 트래킹 0.35em으로 절제된 크기
+ * - orientation 'horizontal'(기본) : 심볼 좌측, 워드마크 우측 스택
+ * - orientation 'stack'            : 심볼 상단, 워드마크 하단 (Hero용)
  */
 export default function Logo({
-  size = 32,
+  size = 28,
   showText = true,
+  orientation = "horizontal",
   className,
 }: {
   size?: number;
   showText?: boolean;
+  orientation?: "horizontal" | "stack";
   className?: string;
 }) {
+  const enSize = Math.round(size * 0.72);
+  const koSize = Math.round(size * 0.42);
+
+  if (orientation === "stack") {
+    return (
+      <span
+        className={`inline-flex flex-col items-center gap-3 ${className ?? ""}`}
+      >
+        <LogoMark size={size} />
+        {showText && (
+          <span className="flex flex-col items-center leading-none">
+            <span
+              className="font-serif font-bold uppercase text-stone-900"
+              style={{ fontSize: `${enSize}px`, letterSpacing: "0.22em" }}
+            >
+              KUME
+            </span>
+            <span
+              className="mt-1.5 font-serif text-stone-600"
+              style={{ fontSize: `${koSize}px`, letterSpacing: "0.35em" }}
+            >
+              쿠 메
+            </span>
+          </span>
+        )}
+      </span>
+    );
+  }
+
   return (
     <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
       <LogoMark size={size} />
       {showText && (
-        <span
-          className="font-serif font-bold uppercase leading-none text-stone-900"
-          style={{
-            fontSize: `${Math.round(size * 0.62)}px`,
-            letterSpacing: "0.14em",
-          }}
-        >
-          KUME
+        <span className="flex flex-col leading-none">
+          <span
+            className="font-serif font-bold uppercase text-stone-900"
+            style={{ fontSize: `${enSize}px`, letterSpacing: "0.2em" }}
+          >
+            KUME
+          </span>
+          <span
+            className="mt-1 font-serif text-stone-500"
+            style={{ fontSize: `${koSize}px`, letterSpacing: "0.3em" }}
+          >
+            쿠 메
+          </span>
         </span>
       )}
     </span>

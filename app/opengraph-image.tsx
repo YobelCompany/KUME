@@ -23,49 +23,68 @@ export default async function OpenGraphImage() {
             'Georgia, "Nanum Myeongjo", "Noto Serif KR", serif',
         }}
       >
-        {/* Refined K monogram in warm circle */}
+        {/* 일출 마크 (크게) */}
         <svg
-          width="180"
-          height="180"
-          viewBox="0 0 100 100"
+          width="280"
+          height="160"
+          viewBox="0 0 70 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle cx="50" cy="50" r="50" fill="#bd5732" />
-          <g fill="#fdf6f2">
-            <rect x="30" y="26" width="8" height="48" />
-            <rect x="24" y="26" width="20" height="3" />
-            <rect x="24" y="71" width="20" height="3" />
-            <path d="M38 51 L60 26 L68 26 L46 51 Z" />
-            <path d="M46 51 L68 74 L60 74 L38 51 Z" />
-            <rect x="58" y="26" width="12" height="3" />
-            <rect x="58" y="71" width="12" height="3" />
+          <g stroke="#bd5732" strokeWidth="1.4" strokeLinecap="round">
+            <line x1="35" y1="3" x2="35" y2="11" />
+            <line x1="25" y1="6" x2="28" y2="13" />
+            <line x1="45" y1="6" x2="42" y2="13" />
+            <line x1="16" y1="12" x2="21" y2="17" />
+            <line x1="54" y1="12" x2="49" y2="17" />
           </g>
+          <path d="M23 28 A12 12 0 0 1 47 28 Z" fill="#bd5732" />
+          <line
+            x1="4"
+            y1="28"
+            x2="66"
+            y2="28"
+            stroke="#bd5732"
+            strokeWidth="1.2"
+            strokeLinecap="round"
+          />
         </svg>
 
-        {/* Wordmark — 정체 대문자 + 트래킹 */}
+        {/* Wordmark 영문 */}
         <div
           style={{
             display: "flex",
-            fontSize: 110,
+            fontSize: 100,
             fontWeight: 800,
             color: "#1c1917",
-            marginTop: 32,
-            letterSpacing: "0.14em",
+            marginTop: 24,
+            letterSpacing: "0.22em",
           }}
         >
           KUME
+        </div>
+
+        {/* 한글 병기 */}
+        <div
+          style={{
+            display: "flex",
+            fontSize: 36,
+            color: "#57534e",
+            marginTop: 12,
+            letterSpacing: "0.4em",
+          }}
+        >
+          쿠 메
         </div>
 
         {/* Tagline */}
         <div
           style={{
             display: "flex",
-            fontSize: 34,
+            fontSize: 30,
             color: "#44403c",
-            marginTop: 28,
+            marginTop: 40,
             textAlign: "center",
-            fontWeight: 400,
           }}
         >
           다시 시작하는 당신의 성장 파트너
@@ -75,11 +94,11 @@ export default async function OpenGraphImage() {
         <div
           style={{
             display: "flex",
-            fontSize: 22,
+            fontSize: 20,
             color: "#9c4529",
-            marginTop: 44,
+            marginTop: 32,
             fontStyle: "italic",
-            letterSpacing: "0.05em",
+            letterSpacing: "0.08em",
           }}
         >
           &ldquo;탈리다 쿰&rdquo; · 여자여, 일어나라
