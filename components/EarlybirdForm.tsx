@@ -4,10 +4,13 @@ import { useState, type FormEvent } from "react";
 
 /**
  * 얼리버드 사전 신청 폼.
- * 현재는 백엔드가 없어 사용자의 기본 이메일 클라이언트를 열어
- * hello@kume.kr 로 신청 내용을 전송합니다.
- * 추후 Google Form / Airtable / 자체 API 등에 연동하면
- * handleSubmit 내부만 교체하면 됩니다.
+ *
+ * 흐름:
+ * 1) /api/earlybird 로 POST (Google Form 또는 Airtable에 저장)
+ * 2) 백엔드가 501(unconfigured) 응답이면 mailto 폴백을 안내
+ * 3) 그 외 오류는 화면에 표시
+ *
+ * 환경변수 설정은 프로젝트 README.md 참고.
  */
 export default function EarlybirdForm() {
   const [name, setName] = useState("");
@@ -15,9 +18,21 @@ export default function EarlybirdForm() {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const buildMailto = () => {
+    const subject = encodeURIComponent("[얼리버드] KUME 프로그램 사전 신청");
+    const body = encodeURIComponent(
+      `이름: ${name}\n이메일: ${email}\n\n하고 싶은 이야기:\n${
+        message.trim() || "(비어있음)"
+      }\n\n— KUME 홈페이지에서 신청되었습니다.`,
+    );
+    return `mailto:hello@kume.kr?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
 
     if (!name.trim()) {
       setError("이름을 알려주세요.");
@@ -28,17 +43,42 @@ export default function EarlybirdForm() {
       return;
     }
 
-    const subject = encodeURIComponent("[얼리버드] KUME 프로그램 사전 신청");
-    const body = encodeURIComponent(
-      `이름: ${name}\n이메일: ${email}\n\n하고 싶은 이야기:\n${
-        message.trim() || "(비어있음)"
-      }\n\n— KUME 홈페이지에서 신청되었습니다.`,
-    );
-    // 사용자의 메일 앱을 열어 실제 문의로 발송
-    window.location.href = `mailto:hello@kume.kr?subject=${subject}&body=${body}`;
+    setLoading(true);
+    try {
+      const res = await fetch("/api/earlybird", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        unconfigured?: boolean;
+      };
 
-    setSubmitted(true);
-    setError("");
+      if (res.ok && data.ok) {
+        setSubmitted(true);
+        return;
+      }
+
+      // 아직 백엔드 연동이 안 된 경우 → mailto 폴백
+      if (res.status === 501 && data.unconfigured) {
+        window.location.href = buildMailto();
+        setSubmitted(true);
+        return;
+      }
+
+      setError(
+        data.error ||
+          "저장에 실패했어요. 잠시 후 다시 시도하거나 hello@kume.kr로 직접 보내주세요.",
+      );
+    } catch {
+      setError(
+        "네트워크 오류가 발생했어요. 잠시 후 다시 시도하거나 hello@kume.kr로 직접 보내주세요.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -75,6 +115,7 @@ export default function EarlybirdForm() {
             placeholder="어떻게 불러드리면 좋을까요?"
             className="mt-2 w-full rounded-xl border border-cream-200 bg-cream-50 px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:border-brand-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-200"
             required
+            disabled={loading}
           />
         </label>
         <label className="block">
@@ -86,6 +127,7 @@ export default function EarlybirdForm() {
             placeholder="you@example.com"
             className="mt-2 w-full rounded-xl border border-cream-200 bg-cream-50 px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:border-brand-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-200"
             required
+            disabled={loading}
           />
         </label>
       </div>
@@ -99,6 +141,7 @@ export default function EarlybirdForm() {
           rows={4}
           placeholder="지금의 마음, 궁금한 점, 무엇이든 편하게 남겨주세요."
           className="mt-2 w-full resize-none rounded-xl border border-cream-200 bg-cream-50 px-4 py-3 text-stone-900 placeholder:text-stone-400 focus:border-brand-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-200"
+          disabled={loading}
         />
       </label>
 
@@ -114,9 +157,10 @@ export default function EarlybirdForm() {
         </p>
         <button
           type="submit"
-          className="w-full rounded-full bg-brand-500 px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-brand-600 hover:shadow-lg sm:w-auto"
+          disabled={loading}
+          className="w-full rounded-full bg-brand-500 px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-brand-600 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
-          얼리버드로 신청하기 →
+          {loading ? "보내는 중..." : "얼리버드로 신청하기 →"}
         </button>
       </div>
     </form>

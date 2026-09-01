@@ -1,4 +1,5 @@
 import About from "@/components/About";
+import Agency from "@/components/Agency";
 import Contact from "@/components/Contact";
 import Earlybird from "@/components/Earlybird";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ export default function HomePage() {
         <Hero />
         <About />
         <Services />
+        <Agency />
         <WhyUs />
         <Story />
         <Earlybird />

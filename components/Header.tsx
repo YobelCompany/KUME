@@ -4,7 +4,8 @@ import Logo from "./Logo";
 const navItems = [
   { href: "#about", label: "소개" },
   { href: "#programs", label: "프로그램" },
-  { href: "#promise", label: "우리의 약속" },
+  { href: "#agency", label: "스튜디오" },
+  { href: "#promise", label: "약속" },
   { href: "#story", label: "스토리" },
   { href: "#earlybird", label: "얼리버드" },
 ];
@@ -16,7 +17,7 @@ export default function Header() {
         <Link href="/" aria-label="KUME 홈으로">
           <Logo size={32} />
         </Link>
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
