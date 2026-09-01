@@ -90,10 +90,19 @@ export default function Services() {
           ))}
         </div>
 
-        <p className="mx-auto mt-12 max-w-xl text-center text-sm text-stone-500">
-          * 프로그램은 준비 중이며, 얼리버드로 함께할 분들을 모집하고 있어요.
-          아래 문의로 편하게 이야기 나눠주세요.
-        </p>
+        <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-brand-200 bg-white p-6 text-center shadow-sm">
+          <p className="text-sm text-stone-600">
+            프로그램은 <span className="font-semibold text-brand-700">첫 기수</span>를 준비 중이에요.
+            <br className="hidden sm:inline" />
+            얼리버드로 함께하실 분들을 모시고 있습니다.
+          </p>
+          <a
+            href="#earlybird"
+            className="mt-4 inline-block rounded-full bg-brand-500 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-600"
+          >
+            얼리버드 신청하기 →
+          </a>
+        </div>
       </div>
     </section>
   );
