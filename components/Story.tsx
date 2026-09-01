@@ -47,11 +47,25 @@ export default function Story() {
                 </span>
                 가장 가까이에서 응원하는 파트너가 되겠습니다.
               </p>
-              <p className="border-t border-cream-200 pt-6 text-base italic text-stone-500">
-                &mdash; 첫 기수 멤버들과의 이야기를 여기에 함께 담아갈 예정입니다.
-                당신의 이야기도 들려주세요.
-              </p>
             </div>
+          </div>
+
+          {/* 창업자 노트: 짧고 담담한 자기 소개 */}
+          <div className="mt-8 rounded-3xl border border-cream-200 bg-white/70 p-8 shadow-sm sm:p-10">
+            <p className="text-xs font-semibold uppercase tracking-wider text-brand-600">
+              Founder&apos;s Note
+            </p>
+            <p className="mt-4 font-serif text-xl leading-relaxed text-stone-800 sm:text-2xl">
+              &ldquo;이전 회사를 이끌다 무너져 본 창업자가,
+              다시 시작합니다. 그래서 이 여정의 무게를 조금은 압니다.&rdquo;
+            </p>
+            <p className="mt-6 text-sm italic text-stone-500">
+              — KUME 창업자 드림
+            </p>
+            <p className="mt-6 border-t border-cream-200 pt-6 text-sm leading-6 text-stone-500">
+              첫 기수 멤버들과의 이야기를 이곳에 함께 담아갈 예정입니다.
+              당신의 이야기도 들려주세요.
+            </p>
           </div>
         </div>
       </div>

@@ -90,7 +90,37 @@ export default function Services() {
           ))}
         </div>
 
-        <div className="mx-auto mt-12 max-w-xl rounded-2xl border border-brand-200 bg-white p-6 text-center shadow-sm">
+        {/* 곧 오픈: 12주 브랜딩·디자인·웹 부트캠프 (사전 알림 유도) */}
+        <div className="mt-8 overflow-hidden rounded-3xl border-2 border-dashed border-brand-300 bg-gradient-to-br from-brand-50 to-cream-50 p-8 sm:p-10">
+          <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-3 py-1 text-xs font-semibold text-white">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+                곧 오픈 · Coming Soon
+              </span>
+              <h3 className="mt-4 font-serif text-2xl font-bold text-stone-900 sm:text-3xl">
+                12주 브랜딩·디자인·웹 부트캠프
+              </h3>
+              <p className="mt-3 text-base leading-7 text-stone-600">
+                재택으로 첫 수입을 만들 수 있는 실전 기술을 함께 배우고,
+                수료 후에는 KUME의 실제 프로젝트로 데뷔할 수 있도록 연결합니다.
+                &ldquo;배우는 것&rdquo;에서 그치지 않고
+                <span className="font-semibold text-brand-700">
+                  {" "}&ldquo;일하는 것&rdquo;까지{" "}
+                </span>
+                이어지도록 설계 중이에요.
+              </p>
+            </div>
+            <a
+              href="#earlybird"
+              className="w-full flex-shrink-0 rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-brand-700 shadow-sm ring-1 ring-brand-200 transition hover:bg-brand-50 hover:ring-brand-400 lg:w-auto"
+            >
+              사전 알림 신청 →
+            </a>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-brand-200 bg-white p-6 text-center shadow-sm">
           <p className="text-sm text-stone-600">
             프로그램은 <span className="font-semibold text-brand-700">첫 기수</span>를 준비 중이에요.
             <br className="hidden sm:inline" />
