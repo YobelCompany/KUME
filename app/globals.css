@@ -4,6 +4,7 @@
 
 :root {
   --font-sans: "Pretendard", "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Nanum Myeongjo", "Noto Serif KR", Georgia, serif;
 }
 
 html {
@@ -11,7 +12,7 @@ html {
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
+  @apply bg-cream-50 text-stone-800 antialiased;
 }
 
 @layer components {

@@ -1,65 +1,99 @@
-const services = [
+const programs = [
   {
-    title: "프로덕트 개발",
-    desc: "웹/모바일 서비스의 기획부터 출시, 운영까지 풀사이클로 함께합니다.",
-    items: ["서비스 기획", "UI/UX 디자인", "프론트엔드/백엔드", "DevOps"],
+    tag: "8주 코스",
+    title: "리부트 클래스",
+    desc: "지난 시간을 정리하고 앞으로의 방향을 찾는 8주 집중 프로그램.",
+    items: [
+      "1~2주차 · 나를 다시 만나기",
+      "3~4주차 · 강점과 자원 발견",
+      "5~6주차 · 커리어 방향 설계",
+      "7~8주차 · 첫 걸음 실행 계획",
+    ],
+    highlight: "매 기수 소규모(10명 내외)로 진행",
   },
   {
-    title: "디지털 전환",
-    desc: "기존 비즈니스를 디지털 환경에 맞게 재설계하고 효율을 높입니다.",
-    items: ["업무 자동화", "데이터 통합", "클라우드 마이그레이션", "AI 도입"],
+    tag: "1:1 세션",
+    title: "커리어 코칭",
+    desc: "전문 코치와 함께 나만의 다음 챕터를 그려보는 개인 맞춤 세션.",
+    items: [
+      "지금의 나 진단",
+      "가능성 있는 방향 탐색",
+      "구체적인 실행 계획",
+      "정서적 지지와 동행",
+    ],
+    highlight: "월 1~2회 · 60분 세션",
   },
   {
-    title: "브랜드 & 마케팅",
-    desc: "고객의 마음에 닿는 브랜드 경험과 그로스 마케팅을 설계합니다.",
-    items: ["브랜드 전략", "비주얼 아이덴티티", "퍼포먼스 마케팅", "콘텐츠"],
+    tag: "커뮤니티",
+    title: "위클리 모임",
+    desc: "같은 길을 걷는 동료들과 매주 만나며 성장을 나누는 공간.",
+    items: [
+      "온라인 위클리 체크인",
+      "월 1회 오프라인 모임",
+      "주제별 소그룹 스터디",
+      "선배 멤버 멘토링",
+    ],
+    highlight: "누구나 편하게 참여 가능",
   },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="bg-slate-50 py-24 sm:py-32">
+    <section id="programs" className="bg-cream-100 py-24 sm:py-32">
       <div className="container-page">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-            Services
+            Programs
           </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            우리가 제공하는 서비스
+          <h2 className="mt-3 font-serif text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+            우리가 함께하는 방식
           </h2>
-          <p className="mt-4 text-lg leading-8 text-slate-600">
-            비즈니스의 단계와 필요에 맞춰 가장 적합한 솔루션을 제안합니다.
+          <p className="mt-4 text-lg leading-8 text-stone-600">
+            혼자서는 어렵지만, 함께라면 다시 시작할 수 있어요.
+            <br className="hidden sm:inline" />
+            지금 나에게 필요한 걸음을 골라 보세요.
           </p>
         </div>
 
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
-          {services.map((service) => (
+          {programs.map((program) => (
             <article
-              key={service.title}
-              className="group flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:border-brand-300 hover:shadow-lg"
+              key={program.title}
+              className="group flex flex-col rounded-3xl border border-cream-200 bg-white p-8 shadow-sm transition hover:border-brand-300 hover:shadow-lg"
             >
-              <h3 className="text-xl font-bold text-slate-900">
-                {service.title}
+              <span className="inline-flex w-fit items-center rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
+                {program.tag}
+              </span>
+              <h3 className="mt-4 font-serif text-2xl font-bold text-stone-900">
+                {program.title}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                {service.desc}
+              <p className="mt-3 text-sm leading-6 text-stone-600">
+                {program.desc}
               </p>
-              <ul className="mt-6 space-y-2 border-t border-slate-100 pt-6">
-                {service.items.map((item) => (
+              <ul className="mt-6 space-y-2 border-t border-cream-200 pt-6">
+                {program.items.map((item) => (
                   <li
                     key={item}
-                    className="flex items-center gap-2 text-sm text-slate-700"
+                    className="flex items-start gap-2 text-sm text-stone-700"
                   >
-                    <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+                    <span className="mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
                       ✓
                     </span>
-                    {item}
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
+              <p className="mt-6 text-xs text-stone-500">
+                {program.highlight}
+              </p>
             </article>
           ))}
         </div>
+
+        <p className="mx-auto mt-12 max-w-xl text-center text-sm text-stone-500">
+          * 프로그램은 준비 중이며, 얼리버드로 함께할 분들을 모집하고 있어요.
+          아래 문의로 편하게 이야기 나눠주세요.
+        </p>
       </div>
     </section>
   );

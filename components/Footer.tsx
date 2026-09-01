@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-white">
-      <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-slate-500 sm:flex-row">
-        <div className="flex items-center gap-2">
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded bg-brand-600 text-xs font-bold text-white">
+    <footer className="border-t border-cream-200 bg-cream-50">
+      <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-stone-500 sm:flex-row">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white">
             K
           </span>
-          <span className="font-semibold text-slate-700">KUME</span>
+          <span className="font-serif font-semibold text-stone-700">KUME</span>
           <span>© {new Date().getFullYear()} All rights reserved.</span>
         </div>
         <div className="flex items-center gap-6">
