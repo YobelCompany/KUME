@@ -17,63 +17,41 @@ export default async function OpenGraphImage() {
           width: "100%",
           height: "100%",
           background:
-            "linear-gradient(135deg, #fdf6f2 0%, #faeae0 50%, #f3cfbb 100%)",
+            "linear-gradient(135deg, #fdf6f2 0%, #faeae0 55%, #f3cfbb 100%)",
           padding: "80px",
           fontFamily:
             'Georgia, "Nanum Myeongjo", "Noto Serif KR", serif',
         }}
       >
-        {/* Logo mark (일어난 여성 실루엣) */}
+        {/* Refined K monogram in warm circle */}
         <svg
-          width="140"
-          height="140"
-          viewBox="0 0 40 40"
+          width="180"
+          height="180"
+          viewBox="0 0 100 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <defs>
-            <linearGradient id="mark" x1="8" y1="4" x2="32" y2="36" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#df8a62" />
-              <stop offset="1" stopColor="#bd5732" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M4 33 Q20 30.5 36 33"
-            stroke="url(#mark)"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            fill="none"
-            opacity="0.5"
-          />
-          <circle cx="20" cy="11" r="3.4" fill="url(#mark)" />
-          <path
-            d="M13.5 30 C13.5 22 15.5 17.5 20 16.5 C24.5 17.5 26.5 22 26.5 30 Z"
-            fill="url(#mark)"
-          />
-          <path
-            d="M14.5 21 L10.5 25.5"
-            stroke="url(#mark)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <path
-            d="M25.5 21 L29.5 25.5"
-            stroke="url(#mark)"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
+          <circle cx="50" cy="50" r="50" fill="#bd5732" />
+          <g fill="#fdf6f2">
+            <rect x="30" y="26" width="8" height="48" />
+            <rect x="24" y="26" width="20" height="3" />
+            <rect x="24" y="71" width="20" height="3" />
+            <path d="M38 51 L60 26 L68 26 L46 51 Z" />
+            <path d="M46 51 L68 74 L60 74 L38 51 Z" />
+            <rect x="58" y="26" width="12" height="3" />
+            <rect x="58" y="71" width="12" height="3" />
+          </g>
         </svg>
 
-        {/* Wordmark */}
+        {/* Wordmark — 정체 대문자 + 트래킹 */}
         <div
           style={{
             display: "flex",
-            fontSize: 120,
+            fontSize: 110,
             fontWeight: 800,
-            fontStyle: "italic",
             color: "#1c1917",
-            marginTop: 24,
-            letterSpacing: "-0.03em",
+            marginTop: 32,
+            letterSpacing: "0.14em",
           }}
         >
           KUME
@@ -83,10 +61,11 @@ export default async function OpenGraphImage() {
         <div
           style={{
             display: "flex",
-            fontSize: 40,
+            fontSize: 34,
             color: "#44403c",
-            marginTop: 32,
+            marginTop: 28,
             textAlign: "center",
+            fontWeight: 400,
           }}
         >
           다시 시작하는 당신의 성장 파트너
@@ -96,9 +75,9 @@ export default async function OpenGraphImage() {
         <div
           style={{
             display: "flex",
-            fontSize: 24,
+            fontSize: 22,
             color: "#9c4529",
-            marginTop: 40,
+            marginTop: 44,
             fontStyle: "italic",
             letterSpacing: "0.05em",
           }}
